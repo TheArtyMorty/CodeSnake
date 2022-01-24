@@ -1,0 +1,20 @@
+gameloop
+read mapSize:int
+loop mapSize read row:string(mapSize)
+read myDirection:word(5)
+read myBonuses:string(20)
+read mySize:int
+loop mySize read bodyX:int bodyY:int
+read opponentDirection:word(5)
+read opponentBonuses:string(20)
+read opponentSize:int
+loop opponentSize read bodyX:int bodyY:int
+read validActionCount:int
+loop validActionCount read validAction:string(20)
+write UP
+
+INPUT
+mapSize: The size of the map
+
+OUTPUT
+<direction><bonus>
