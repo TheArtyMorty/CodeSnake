@@ -1,22 +1,63 @@
 package com.codingame.game;
-import java.util.Deque;
-import java.util.LinkedList;
+import com.codingame.gameengine.module.entities.GraphicEntityModule;
+import com.codingame.gameengine.module.entities.Sprite;
+import javafx.geometry.Pos;
+
+import java.util.*;
 
 public class Snake {
+	private GraphicManager graphicManager;
+	private int mapSize;
+	private int color;
+
 	public int orientation = 0;
 	public String bonuses = "";
 	public Deque<Position> body = new LinkedList<Position>();
 	
 	private String[] directions = { "UP", "RIGHT", "DOWN", "LEFT" };
 
-	public Snake(int headx, int heady, int tailx, int taily, int o) {
+	public Snake(Position head, Position tail, int o, GraphicManager graphicModule, int size, int c) {
+		graphicManager = graphicModule;
+		mapSize = size;
+		color = c;
 		body.clear();
-		body.add(new Position(headx,heady));
-		body.add(new Position(tailx,taily));
+		body.addFirst(head);
+		graphicManager.AddSnakeSprite(head, c);
+		body.addLast(tail);
+		graphicManager.AddSnakeSprite(tail, c);
         orientation = o;
         bonuses = "";
     }
-	
+
+
+
+	public void MoveSnakeTo(Position p, boolean removeTail)
+	{
+		body.addFirst(p);
+		if (removeTail)
+		{
+			body.removeLast();
+		}
+		else
+		{
+			graphicManager.AddSnakeSprite(p,color);
+		}
+		for (int i = 0; i < body.size(); i++)
+		{
+			graphicManager.MoveSnakeSpriteTo(color,i, (Position)body.toArray()[i]);
+		}
+	}
+
+	public Position Head()
+	{
+		return body.getFirst();
+	}
+
+	public Position RemoveTail()
+	{
+		return body.removeLast();
+	}
+
 	public boolean CanGoInDirection(int d)
 	{
 		return ((orientation + 2) % 4) != d;

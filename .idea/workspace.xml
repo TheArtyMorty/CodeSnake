@@ -5,36 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5ca90c5-2e4f-4181-bd1b-b5c5f27b615c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/config/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/level1/statement_en.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/level1/statement_en.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/level1/statement_fr.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/level1/statement_fr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/level2/statement_en.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/level2/statement_en.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/level2/statement_fr.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/level2/statement_fr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/statement_en.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/statement_en.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/stub.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/stub.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/CMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/GraphicManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/InvalidAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/InvalidAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/SnakeDied.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/demo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Player1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Player1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Player2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Player2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/log4j2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/log4j2.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Action.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/InvalidAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/InvalidAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Position.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Referee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Referee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Snake.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Snake.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/SnakeDied.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/Player1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Player1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/Player2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Player2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/log4j2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/log4j2.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -46,6 +67,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="23pPVG4NoQHugtwJx6lj6WCmCEe" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -54,7 +78,25 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.jdks/corretto-1.8.0_322" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.44942528" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="CodeSnakeGit" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -66,5 +108,16 @@
       <updated>1642428085025</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

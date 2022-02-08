@@ -1,4 +1,10 @@
 import { GraphicEntityModule } from './entity-module/GraphicEntityModule.js';
+import { EndScreenModule } from './endscreen-module/EndScreenModule.js';
+
+export const modules = [
+	GraphicEntityModule,
+	EndScreenModule
+];
 
 export const demo = {
   playerCount: 2,
@@ -94,8 +100,4 @@ export const demo = {
 export const playerColors = [
   '#f2b213', // yellow
   '#22a1e4' // curious blue
-];
-
-export const modules = [
-	GraphicEntityModule
 ];

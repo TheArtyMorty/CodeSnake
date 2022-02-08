@@ -1,0 +1,42 @@
+<component name="libraryTable">
+  <library name="corretto-1.8">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/ArcTest" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/BarChart" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/Blink" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/CardTest" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/Clock" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/DitherTest" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/DrawTest" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/Fractal" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/GraphicsTest" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/MoleculeViewer" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/NervousText" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/SimpleGraph" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/SortDemo" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/SpreadSheet" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/applets/WireFrame" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/demo/nio/zipfs" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/annotations/DependencyChecker/PluginChecker/src" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/annotations/DependencyChecker/Plugins/src" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/annotations/Validator/src" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/forkjoin/mergesort" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/jmx/jmx-scandir/src" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/jmx/jmx-scandir/test" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/lambda/BulkDataOperations/src" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/lambda/DefaultMethods" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/nio/chatserver" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/nio/file" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/nio/multicast" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/nio/server" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/scripting/scriptpad/src" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322/sample/try-with-resources/src" />
+      <root url="file://$USER_HOME$/.jdks/corretto-1.8.0_322" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/.jdks/corretto-1.8.0_322" recursive="false" type="SOURCES" />
+  </library>
+</component>

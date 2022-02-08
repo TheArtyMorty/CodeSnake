@@ -7,54 +7,48 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.codingame.gameengine.module.entities.Curve;
-import com.codingame.gameengine.module.entities.GraphicEntityModule;
-import com.codingame.gameengine.module.entities.Group;
-import com.codingame.gameengine.module.entities.Line;
-import com.codingame.gameengine.module.entities.Sprite;
+import com.codingame.gameengine.module.entities.*;
 import com.google.inject.Inject;
 
 public class Grid {
-    @Inject private GraphicEntityModule graphicEntityModule;
+	private GraphicManager graphicManager;
 
-    private String[] images = { "cross.png", "circle.png" };
     private String[] directions = { "UP", "RIGHT", "DOWN", "LEFT" };
 
     private Group entity;
 
     private int mapSize = 10;
     private char[][] grid;
+	private String mapName;
+
     private long mapSeed;
     protected int winner = 0;
     
     private Snake[] snakes = new Snake[2];
-    
-    public Grid(int size, long seed)
+
+	public Grid(long seed, GraphicManager graphicModule, List<Player> players)
     {
-    	mapSize = size;
+		graphicManager = graphicModule;
     	mapSeed = seed;
-    	InitGridAndSnakes(size);
+    	InitGridAndSnakes(players);
     }
 
-    private void InitGridAndSnakes(int size)
+    private void InitGridAndSnakes(List<Player> players)
     {
-    	 grid = new char[size][size];
-    	 
-    	 for (int i = 0; i < size; i++)
-    	 {
-    		 char[] row = new char[size];
-    		 Arrays.fill(row,'.');
-    		 grid[i] = row;
-    	 }
-    		    
-    	 grid[1][1]='0';
-    	 grid[1][2]='0';
-    	 grid[5][4]='A';
-    	 grid[size-2][size-2]='1';
-    	 grid[size-2][size-3]='1';
-    	 
- 		snakes[0] = new Snake(2,1,1,1,1);
- 		snakes[1] = new Snake(size-3,size-2,size-2,size-2,3);
+		 CMap theMap = com.codingame.game.CMap.MapGenerator.GenerateRandomMapForLeague(mapSeed,0);
+
+    	 grid = theMap.grid;
+    	 mapSize = theMap.mapSize;
+		 mapName = theMap.mapName;
+
+		 graphicManager.Init(mapSize, players.get(0).getColorToken(), players.get(1).getColorToken());
+
+ 		snakes[0] = new Snake(new Position(2,1), new Position(1,1), 1, graphicManager, mapSize, 0);
+ 		snakes[1] = new Snake(new Position(mapSize-3,mapSize-2),new Position(mapSize-2,mapSize-2),3, graphicManager, mapSize, 1);
+
+		 graphicManager.DrawGrid(theMap);
+
+		GenerateFruits();
     }
     
     public List<Action> getValidActionsFor(Player player) {
@@ -94,7 +88,11 @@ public class Grid {
     			{
     				formattedRow += c == '0' ? '1' : '0';
     			}
-    			else
+    			else if (snakeIndex != 0 && (c == 'A' || c == 'B'))
+				{
+					formattedRow += c == 'A' ? 'B' : 'A';
+				}
+				else
     			{
     				formattedRow += c;
     			}
@@ -108,25 +106,17 @@ public class Grid {
     private boolean IsValidAction(Action action)
     {
     	Snake snake = GetPlayerSnake(action.player);
-    	switch (action.direction)
-        {
-        case "UP":
-        	if (snake.orientation == 2) return false;
-        	break;
-        case "RIGHT":
-        	if (snake.orientation == 3) return false;
-        	break;
-        case "DOWN":
-        	if (snake.orientation == 0) return false;
-        	break;
-        case "LEFT":
-        	if (snake.orientation == 1) return false;
-        	break;
-        }
-    	return true;
+		for (int i = 0; i < 4; i++)
+		{
+			if (directions[i].equals(action.direction))
+			{
+				return snake.CanGoInDirection(i);
+			}
+		}
+    	return false;
     }
     
-    public void play(Action action) throws InvalidAction, SnakeDied {
+    public void play(Action action) throws InvalidAction {
         if (!IsValidAction(action)) 
         {
             throw new InvalidAction("Invalid move!");
@@ -159,74 +149,110 @@ public class Grid {
         	else {nextx = mapSize - 1;}
         	break;
         }
-		if (!MoveSnakeTo(snake, new Position(nextx, nexty), action.player.getIndex()))
-		{
-			throw new SnakeDied("Snake died !");
-		}
-
-        drawPlay(action);
+		MoveSnakeTo(snake, new Position(nextx, nexty), action.player.getIndex());
     }
     
-    private boolean MoveSnakeTo(Snake snake, Position position, int playerIndex) 
+    private void MoveSnakeTo(Snake snake, Position position, int playerIndex)
     {
-    	switch (grid[position.y][position.x])
+		Position tail;
+		char cellContent = grid[position.y][position.x];
+    	switch (cellContent)
     	{
-    	case '.':
-    		snake.body.addFirst(position);
-    		grid[position.y][position.x] = (char)('0' + playerIndex);
-    		Position tail = snake.body.removeLast();
-    		grid[tail.y][tail.x] = '.';
-    		break;
     	case 'A':
-    		snake.body.addFirst(position);
-    		grid[position.y][position.x] = (char)('0' + playerIndex);
-    		GenerateNewApple();
+		case 'B':
+			snake.MoveSnakeTo(position, ('A' + playerIndex) != cellContent);
+			if (('A' + playerIndex) != cellContent)
+			{
+				tail = snake.body.getLast();
+				grid[tail.y][tail.x] = '.';
+			}
+			graphicManager.HideFruit(cellContent - 'A');
+    		GenerateNewFruit(cellContent);
     		break;
-    	default:
-    		//Kill the snake
-    		return false;
+		case '.':
+		case '0':
+		case '1':
+		case 'W':
+		default:
+			//Move but Wait until end turn to know if really dead or both dead
+			tail = snake.body.getLast();
+			grid[tail.y][tail.x] = '.';
+			snake.MoveSnakeTo(position, true);
+			break;
     	}
-    	return true;
     }
-    
-    private void GenerateNewApple()
+
+	public List<Integer> UpdateAfterTurn()
+	{
+		List<Integer> deadSnakes = new ArrayList<Integer>();
+		if (snakes[0].Head() == snakes[1].Head())
+		{
+			deadSnakes.add(0);
+			deadSnakes.add(1);
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			Position position = snakes[i].Head();
+			char cellContent = grid[position.y][position.x];
+			switch (cellContent)
+			{
+				case 'A':
+				case 'B':
+				case '.':
+					grid[position.y][position.x] = (char)('0' + i);
+					break;
+				case 'W':
+				case '0':
+				case '1':
+					deadSnakes.add(i);
+					break;
+			}
+		}
+		return deadSnakes;
+	}
+
+	private int distance(Position p1, Position p2)
+	{
+		return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y);
+	}
+
+	private void GenerateFruits()
+	{
+		boolean fruitWasAdded = false;
+		Random random = new Random(mapSeed);
+		while (!fruitWasAdded)
+		{
+			int x = random.nextInt(mapSize);
+			int y = random.nextInt(mapSize);
+			if (grid[y][x] == '.' &&
+					distance(new Position(x,y), snakes[0].Head()) >= 4 &&
+					distance(new Position(x,y), snakes[1].Head()) >= 4)
+			{
+				grid[y][x] = 'A';
+				graphicManager.drawFruit(x,y, 'A');
+				grid[mapSize -1 - y][mapSize -1 - x] = 'B';
+				graphicManager.drawFruit(mapSize -1 -x,mapSize -1 - y, 'B');
+				return;
+			}
+		}
+	}
+
+    private void GenerateNewFruit(char fruit)
     {
-    	boolean appleWasAdded = false;
+    	boolean fruitWasAdded = false;
     	Random random = new Random(mapSeed);
-    	while (!appleWasAdded)
+    	while (!fruitWasAdded)
     	{
     		int x = random.nextInt(mapSize);
     		int y = random.nextInt(mapSize);
-    		if (grid[y][x] == '.')
+    		if (grid[y][x] == '.' &&
+				distance(new Position(x,y), snakes[0].Head()) >= 4 &&
+				distance(new Position(x,y), snakes[1].Head()) >= 4)
     		{
-    			grid[y][x] = 'A';
+    			grid[y][x] = fruit;
+				graphicManager.drawFruit(x,y, fruit);
     			return;
     		}
     	}
-    }
-
-    public void draw() {
-        
-    }
-
-    public void drawPlay(Action action) {
-
-    }
-
-    public void hide() {
-        this.entity.setAlpha(0);
-        this.entity.setVisible(false);
-    }
-
-    public void activate() {
-        this.entity.setAlpha(1, Curve.NONE);
-        graphicEntityModule.commitEntityState(1, entity);
-    }
-
-    public void deactivate() {
-        if (winner == 0) {
-            this.entity.setAlpha(0.5, Curve.NONE);
-            graphicEntityModule.commitEntityState(1, entity);
-        }
     }
 }
