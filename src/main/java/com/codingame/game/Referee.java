@@ -36,20 +36,12 @@ public class Referee extends AbstractReferee {
         gameManager.setMaxTurns(100);
     }
 
-    private List<Action> getValidActionsFor(Player player) 
-    {
-        List<Action> validActions;
-        validActions = masterGrid.getValidActionsFor(player);
-        //Collections.shuffle(validActions, random);
-        return validActions;
-    }
-
     private void SendPlayerInputs(Player player)
     {
 		masterGrid.SendToPlayer(player);
 		
 		// Possible Actions
-		List<Action> actions = getValidActionsFor(player);
+		List<Action> actions = masterGrid.getValidActionsFor(player);
         player.sendInputLine(Integer.toString(actions.size()));
         for (Action action : actions)
         {
