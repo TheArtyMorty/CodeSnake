@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Player1 {
+class Player {
     private static class Position {
         int x;
         int y;

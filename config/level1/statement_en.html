@@ -15,6 +15,10 @@
           </p>
           <span class="statement-league-alert-content">
             For this challenge, multiple versions of the same game are available. Once you have proven your skills on this first version, you will access a higher league and extra rules will be unlocked.
+                        <br>
+          This is my first contribution, and it is still work in progress. As such, I haven't implemented leagues. <br>
+          It means that currently, everything is already available. For future leagues, I plan on making bonuses such as TELEPORT and REVERSE available later.
+            Also, I might only use simple maps (empty, or no teleport) for the starting leagues. Up for discussion.
           </span>
       </div> 
       <!-- GOAL --> 
@@ -24,8 +28,9 @@
           <span>The Goal</span> 
         </h2> 
         <div class="statement-goal-content"> 
-          CodeSnake is a multiplayer game based on the classic single player snake game.
-		  The objective is to reach a size of 12, or to be the last one alive.
+          CodeSnake is a multiplayer game based on the classic single player snake game.<br>
+		  The objective is to reach a size of 12, or to be the last one alive.<br>
+            <br>
         </div> 
       </div> 
       <!-- RULES --> 
@@ -35,25 +40,36 @@
           <span>Rules</span> 
         </h2> 
         <div><div class="statement-rules-content"><p>
-		 The game is played on a looping grid (going out of the grid will teleport you on the other side).
-		 
-		 The Grid is represented by :
-		 - '.' for empty cells.
-		 - '0' for your snake.
-		 - '1' for opponent snake.
-		 - 'A' for the apple.
-		 - 'W' for a wall.
-		 - 'B' for a bonus. // Upper league 
-		 
-		 Each turn, you must output a direction (UP, LEFT, RIGHT, DOWN), moving your snake in this direction.
-		 If your head touch a wall or a snake (body or head), you are eliminated.
-		 
-		 In upper leagues, you can also use bonuses (BOOST, SWAP, CLIMB). 
-		 Eating an apple will increase your size by 1 (your head move on the apple but your tail will be at the same position on this turn).
-		 
-		 The game last for 200 turns, or until one of the following condition is true : 
-		- 1 player reaches a size of 12
-		- Only 1 player remains</p></div> 
+		 The game is played on a looping grid (going out of the grid will teleport you on the other side).<br>
+            Your snake wants to eat <b>A</b>pples, to increase his size, while the opponent snake wants to eat <b>B</b>lueberries.<br>
+            <br>
+		 The Grid is represented by :<br>
+		 - '.' for empty cells.<br>
+		 - '0' for your snake.<br>
+		 - '1' for opponent snake.<br>
+		 - 'A' for the apple.<br>
+		 - 'B' for the blueberry.<br>
+		 - 'W' for a wall.<br>
+		 - 'T' for the TELEPORT Bonus. // Upper league <br>
+		 - 'R' for the REVERSE Bonus. // Upper league <br>
+            <br>
+		 Each turn, you must output a direction (UP, LEFT, RIGHT, DOWN), moving your snake in this direction.<br>
+		 If your head touch a wall or a snake (body or head), you are eliminated.<br>
+            <br>
+            If your head move on an Apple, the following will occur :<br>
+            - Your size will increase by 1.<br>
+            - A new apple will appear at random (but at least 4 cells of any snake head).<br>
+            You can also eat Blueberries, but it will only make them reappear somewhere else (your length doesn't change).<br>
+            Note : Everything is reversed for your opponent, so he need to eat Blueberries to increase in size.<br>
+            <br>
+		 In upper leagues, you can also use bonuses (BOOST, TELEPORT). <br>
+            You'll need to add the bonus you want to use after your move. Example : MOVE REVERSE<br>
+            REVERSE : Your snake head and tail are swapped ( !! Warning !! Your tail direction is not the same as your head !!)<br>
+            TELEPORT : Your snake will teleport 2 cells in chosen direction, skipping the next cell. This can be used to jump over walls.<br>
+            <br>
+		 The game last for 200 turns, or until one of the following condition is true : <br>
+		- 1 player reaches a size of 12<br>
+		- Only 1 player remains<br></p></div>
         </div> 
       </div> 
       <!-- PROTOCOL --> 
@@ -68,15 +84,17 @@
           <div class="text">
 		  - 1 integer <var>mapSize</var>, the size of the map.<br>
           - Next <var>mapSize</var> lines, 1 string <var>row</var> of mapSize char.<br>
-		  - 1 string <var>myDirection</var>, the orientation your snake facing.<br>
+		  - 1 string <var>myDirection</var>, the orientation your snake facing (UP, RIGHT, DOWN, LEFT).<br>
+		  - 1 string <var>myBonuses</var>, a chain of char representing available bonuses (combination of T and R, or NONE if no bonus).<br>
           - 1 integer <var>mySize</var>, the size of your snake.<br>
 		  - Next <var>mySize</var> lines, 2 integers <var>x</var> and <var>y</var> representing your snake position.<br>
 		  (Note : Your snake body is in output from head to tail).<br>
 		  - 1 string <var>opponentDirection</var>, the orientation your opponent's snake facing.<br>
+          - 1 string <var>opponentBonuses</var>, a chain of char representing your opponent's bonuses.<br>
           - 1 integer <var>opponentSize</var>, the size of your opponent's snake.<br>
 		  - Next <var>opponentSize</var> lines, 2 integers <var>x</var> and <var>y</var> representing your opponent's snake position.<br>
 		  - the number of valid actions for this turn, <var>validActionCount</var>. <br>
-		  - Next <var>validActionCount</var> lines:</span> 1 string <var>validMove</var>, containing a valid action you can submit.</div> 
+		  - Next <var>validActionCount</var> lines: 1 string <var>validMove</var>, containing a valid action you can submit.</div>
         </div> 
  
         <!-- Protocol block --> 

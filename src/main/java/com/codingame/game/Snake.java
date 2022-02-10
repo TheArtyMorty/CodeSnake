@@ -1,7 +1,4 @@
 package com.codingame.game;
-import com.codingame.gameengine.module.entities.GraphicEntityModule;
-import com.codingame.gameengine.module.entities.Sprite;
-import javafx.geometry.Pos;
 
 import java.util.*;
 
@@ -11,7 +8,7 @@ public class Snake {
 	private int color;
 
 	public int orientation = 0;
-	public String bonuses = "RT";
+	public String bonuses = "";
 	public Deque<Position> body = new LinkedList<Position>();
 	public Deque<Integer> orientations = new LinkedList<Integer>();;
 	
@@ -28,7 +25,7 @@ public class Snake {
 		graphicManager.AddSnakeSprite(tail, c);
         orientation = o;
 		orientations.addLast(o);
-        bonuses = "RT";
+        bonuses = "";
     }
 
 	public boolean CanUseReverse()

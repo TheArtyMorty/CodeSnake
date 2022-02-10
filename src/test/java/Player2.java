@@ -80,6 +80,7 @@ class Player2 {
             while (!toDo.isEmpty())
             {
                 PositionWithOrigin current = toDo.remove();
+                //System.err.println(String.format("evaluating %d %d (remaining = %d)",current.x,current.y, toDo.size()));
                 int value = cases[current.y][current.x];
                 for (PositionWithOrigin adj : GetAdjacents(current))
                 {
@@ -96,13 +97,17 @@ class Player2 {
         {
             FillAllCasesFrom(f);
             //If I can't reach destination, find first correct move
+            //System.err.println(cases[to.y][to.x]);
             if (cases[to.y][to.x] < 1)
             {
+                System.err.println(String.format("recovery"));
                 for (PositionWithOrigin p : GetAdjacents(f))
                 {
-                    if (cases[p.y][p.x] == 1)
+                    System.err.println(cases[p.y][p.x]);
+                    if (cases[p.y][p.x] != 99)
                     {
-                        return p.from;
+                        System.err.println(String.format("default solution"));
+                        return (p.from + 2) % 4;
                     }
                 }
             }
@@ -118,10 +123,12 @@ class Player2 {
                     {
                         direction = adj.from;
                         next = adj;
+                        //System.err.println(String.format("%d %d : value = %d : direction = %d", next.y, next.x, value, direction));
                         break;
                     }
                 }
             }
+            //System.err.println(String.format("found a way"));
             return direction;
         }
 
@@ -131,7 +138,6 @@ class Player2 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Random random = new Random(01234567);
 
         while (true) {
             int mapSize = in.nextInt();
@@ -201,8 +207,14 @@ class Player2 {
             }
 
             //Output
-            String action = validActions[random.nextInt(validActionCount)];
-            System.err.println(String.format("I choose action : %s", action));
+            String[] directions = { "UP", "RIGHT", "DOWN", "LEFT" };
+
+            Position myPos = myBody[0];
+            System.err.println(String.format("%d %d",myPos.x,myPos.y));
+            System.err.println(String.format("%d %d",apple.x,apple.y));
+            int d = theMap.GetNextMoveGoingFromTo(myPos, apple);
+            String action = directions[d];
+
             System.out.println(action);
         }
     }
