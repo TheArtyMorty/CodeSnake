@@ -131,6 +131,7 @@ class Player2 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        Random random = new Random(01234567);
 
         while (true) {
             int mapSize = in.nextInt();
@@ -192,21 +193,16 @@ class Player2 {
             int validActionCount = in.nextInt();
             String[] validActions = new String[validActionCount];
             System.err.println(validActionCount);
+            in.nextLine();
             for (int i = 0; i < validActionCount; i++) {
-                String action = in.next();
+                String action = in.nextLine();
                 System.err.println(action);
                 validActions[i] = action;
             }
 
             //Output
-            String[] directions = { "UP", "RIGHT", "DOWN", "LEFT" };
-
-            Position myPos = myBody[0];
-            System.err.println(String.format("%d %d",myPos.x,myPos.y));
-            System.err.println(String.format("%d %d",apple.x,apple.y));
-            int d = theMap.GetNextMoveGoingFromTo(myPos, apple);
-            String action = directions[d];
-
+            String action = validActions[random.nextInt(validActionCount)];
+            System.err.println(String.format("I choose action : %s", action));
             System.out.println(action);
         }
     }

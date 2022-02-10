@@ -97,7 +97,7 @@ class Player1 {
         {
             FillAllCasesFrom(f);
             //If I can't reach destination, find first correct move
-            System.err.println(cases[to.y][to.x]);
+            //System.err.println(cases[to.y][to.x]);
             if (cases[to.y][to.x] < 1)
             {
                 System.err.println(String.format("recovery"));
@@ -128,7 +128,7 @@ class Player1 {
                     }
                 }
             }
-            System.err.println(String.format("found a way"));
+            //System.err.println(String.format("found a way"));
             return direction;
         }
 
@@ -199,8 +199,9 @@ class Player1 {
             int validActionCount = in.nextInt();
             String[] validActions = new String[validActionCount];
             System.err.println(validActionCount);
+            in.nextLine();
             for (int i = 0; i < validActionCount; i++) {
-                String action = in.next();
+                String action = in.nextLine();
                 System.err.println(action);
                 validActions[i] = action;
             }

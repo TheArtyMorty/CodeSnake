@@ -11,8 +11,9 @@ public class Snake {
 	private int color;
 
 	public int orientation = 0;
-	public String bonuses = "";
+	public String bonuses = "RT";
 	public Deque<Position> body = new LinkedList<Position>();
+	public Deque<Integer> orientations = new LinkedList<Integer>();;
 	
 	private String[] directions = { "UP", "RIGHT", "DOWN", "LEFT" };
 
@@ -26,17 +27,66 @@ public class Snake {
 		body.addLast(tail);
 		graphicManager.AddSnakeSprite(tail, c);
         orientation = o;
-        bonuses = "";
+		orientations.addLast(o);
+        bonuses = "RT";
     }
 
+	public boolean CanUseReverse()
+	{
+		return bonuses.contains("R");
+	}
 
+	public boolean CanUseTeleport()
+	{
+		return bonuses.contains("T");
+	}
 
-	public void MoveSnakeTo(Position p, boolean removeTail)
+	public void AddBonus(char b)
+	{
+		if (bonuses.chars().filter(ch -> ch == b).count() < 3)
+		{
+			bonuses += b;
+		}
+	}
+
+	public void UseBonus(char b)
+	{
+		bonuses = bonuses.replaceFirst(Character.toString(b),"");
+	}
+
+	public void Reverse()
+	{
+		UseBonus('R');
+		//reverse Body
+		Deque<Position> reversedBody = new LinkedList<Position>();
+		while (!body.isEmpty())
+		{
+			reversedBody.addLast(body.removeLast());
+		}
+		body = reversedBody;
+		//reverse directions
+		Deque<Integer> reversedOrientations = new LinkedList<Integer>();
+		while (!orientations.isEmpty())
+		{
+			reversedOrientations.addLast((orientations.removeLast()+2) % 4);
+		}
+		orientations = reversedOrientations;
+		orientation = orientations.getFirst();
+	}
+
+	private int GetTailOrientation()
+	{
+		return (orientations.getLast()+2)%4;
+	}
+
+	public void MoveTo(Position p, boolean removeTail)
 	{
 		body.addFirst(p);
+		orientations.addFirst(orientation);
 		if (removeTail)
 		{
 			body.removeLast();
+			orientations.removeLast();
 		}
 		else
 		{
@@ -61,6 +111,11 @@ public class Snake {
 	public boolean CanGoInDirection(int d)
 	{
 		return ((orientation + 2) % 4) != d;
+	}
+
+	public boolean CanReverseToDirection(int d)
+	{
+		return ((GetTailOrientation() + 2) % 4) != d;
 	}
 	
 	public void SendToPlayer(Player player)

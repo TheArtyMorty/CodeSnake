@@ -49,18 +49,40 @@ public class Grid {
 		 graphicManager.DrawGrid(theMap);
 
 		GenerateFruits();
+		GenerateNewItem('T');
+		GenerateNewItem('R');
     }
     
     public List<Action> getValidActionsFor(Player player) {
+		Snake snake = GetPlayerSnake(player);
         List<Action> validActions = new ArrayList<>();
-        if (winner == 0) {
-        	for (int i = 0; i < 4; i++)
-        	{
-        		if (GetPlayerSnake(player).CanGoInDirection(i)) {
-        			validActions.add(new Action(null, directions[i], ""));
-        		}
-        	}
-        }
+		//Standard actions
+		for (int i = 0; i < 4; i++)
+		{
+			if (snake.CanGoInDirection(i)) {
+				validActions.add(new Action(null, directions[i], ""));
+			}
+		}
+		//Using Teleport
+		if (snake.CanUseTeleport())
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if (snake.CanGoInDirection(i)) {
+					validActions.add(new Action(null, directions[i], "TELEPORT"));
+				}
+			}
+		}
+		//Using Reverse
+		if (snake.CanUseReverse())
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if (snake.CanReverseToDirection(i)) {
+					validActions.add(new Action(null, directions[i], "REVERSE"));
+				}
+			}
+		}
         return validActions;
     }
     
@@ -103,17 +125,34 @@ public class Grid {
     	snakes[1-snakeIndex].SendToPlayer(player);
     }
 
+	private int DirectionAsInt(String direction)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (directions[i].equals(direction))
+			{
+				return i;
+			}
+		}
+		return 0;
+	}
+
     private boolean IsValidAction(Action action)
     {
     	Snake snake = GetPlayerSnake(action.player);
-		for (int i = 0; i < 4; i++)
+		int direction = DirectionAsInt(action.direction);
+		if (action.bonus.equals("REVERSE"))
 		{
-			if (directions[i].equals(action.direction))
-			{
-				return snake.CanGoInDirection(i);
-			}
+			return snake.CanUseReverse() && snake.CanReverseToDirection(direction);
 		}
-    	return false;
+		else if (action.bonus.equals("TELEPORT"))
+		{
+			return snake.CanUseTeleport() && snake.CanGoInDirection(direction);
+		}
+		else
+		{
+			return snake.CanGoInDirection(direction);
+		}
     }
     
     public void play(Action action) throws InvalidAction {
@@ -123,6 +162,16 @@ public class Grid {
         }
         
         Snake snake = GetPlayerSnake(action.player);
+		if (action.bonus.equals("REVERSE"))
+		{
+			snake.Reverse();
+		}
+		int increment = action.bonus.equals("TELEPORT") ? 2 : 1;
+		if (action.bonus.equals("TELEPORT"))
+		{
+			snake.UseBonus('T');
+		}
+
         Position head = snake.body.getFirst();
         int nextx = head.x;
         int nexty = head.y;
@@ -130,23 +179,23 @@ public class Grid {
         {
         case "UP":
         	snake.orientation = 0;
-        	if (head.y > 0) {nexty = head.y - 1;}
-        	else {nexty = mapSize - 1;}
+        	if (head.y > increment-1) {nexty = head.y - increment;}
+        	else {nexty = mapSize - increment + head.y;}
         	break;
         case "RIGHT":
         	snake.orientation = 1;
-        	if (head.x < mapSize - 1) {nextx = head.x + 1;}
-        	else {nextx = 0;}
+			if (head.x < mapSize - increment) {nextx = head.x + increment;}
+			else {nextx = 0 + increment - (mapSize- head.x);}
         	break;
         case "DOWN":
         	snake.orientation = 2;
-        	if (head.y < mapSize -1) {nexty = head.y + 1;}
-        	else {nexty = 0;}
+			if (head.y < mapSize - increment) {nexty = head.y + increment;}
+			else {nexty = 0 + increment - (mapSize- head.y);}
         	break;
         case "LEFT":
         	snake.orientation = 3;
-        	if (head.x > 0) {nextx = head.x - 1;}
-        	else {nextx = mapSize - 1;}
+			if (head.x > increment-1) {nextx = head.x - increment;}
+			else {nextx = mapSize - increment + head.x;}
         	break;
         }
 		MoveSnakeTo(snake, new Position(nextx, nexty), action.player.getIndex());
@@ -156,39 +205,24 @@ public class Grid {
     {
 		Position tail;
 		char cellContent = grid[position.y][position.x];
-    	switch (cellContent)
-    	{
-    	case 'A':
-		case 'B':
-			snake.MoveSnakeTo(position, ('A' + playerIndex) != cellContent);
-			if (('A' + playerIndex) != cellContent)
-			{
-				tail = snake.body.getLast();
-				grid[tail.y][tail.x] = '.';
-			}
-			graphicManager.HideFruit(cellContent - 'A');
-    		GenerateNewFruit(cellContent);
-    		break;
-		case '.':
-		case '0':
-		case '1':
-		case 'W':
-		default:
-			//Move but Wait until end turn to know if really dead or both dead
+		boolean removeTail = cellContent != 'A' + playerIndex;
+		//Move but Wait until end turn to know if really dead or both dead
+		if (removeTail)
+		{
 			tail = snake.body.getLast();
 			grid[tail.y][tail.x] = '.';
-			snake.MoveSnakeTo(position, true);
-			break;
-    	}
+		}
+		snake.MoveTo(position, removeTail);
     }
 
 	public List<Integer> UpdateAfterTurn()
 	{
 		List<Integer> deadSnakes = new ArrayList<Integer>();
-		if (snakes[0].Head() == snakes[1].Head())
+		if (snakes[0].Head().Equals(snakes[1].Head()))
 		{
 			deadSnakes.add(0);
 			deadSnakes.add(1);
+			return deadSnakes;
 		}
 		for (int i = 0; i < 2; i++)
 		{
@@ -196,8 +230,13 @@ public class Grid {
 			char cellContent = grid[position.y][position.x];
 			switch (cellContent)
 			{
+				case 'T':
+				case 'R':
+					snakes[i].AddBonus(cellContent);
 				case 'A':
 				case 'B':
+					graphicManager.HideItem(cellContent );
+					GenerateNewItem(cellContent);
 				case '.':
 					grid[position.y][position.x] = (char)('0' + i);
 					break;
@@ -229,30 +268,30 @@ public class Grid {
 					distance(new Position(x,y), snakes[1].Head()) >= 4)
 			{
 				grid[y][x] = 'A';
-				graphicManager.drawFruit(x,y, 'A');
+				graphicManager.drawItem(x,y, 'A');
 				grid[mapSize -1 - y][mapSize -1 - x] = 'B';
-				graphicManager.drawFruit(mapSize -1 -x,mapSize -1 - y, 'B');
+				graphicManager.drawItem(mapSize -1 -x,mapSize -1 - y, 'B');
 				return;
 			}
 		}
 	}
 
-    private void GenerateNewFruit(char fruit)
-    {
-    	boolean fruitWasAdded = false;
-    	Random random = new Random(mapSeed);
-    	while (!fruitWasAdded)
-    	{
-    		int x = random.nextInt(mapSize);
-    		int y = random.nextInt(mapSize);
-    		if (grid[y][x] == '.' &&
-				distance(new Position(x,y), snakes[0].Head()) >= 4 &&
-				distance(new Position(x,y), snakes[1].Head()) >= 4)
-    		{
-    			grid[y][x] = fruit;
-				graphicManager.drawFruit(x,y, fruit);
-    			return;
-    		}
-    	}
-    }
+	private void GenerateNewItem(char item)
+	{
+		boolean itemWasAdded = false;
+		Random random = new Random(mapSeed);
+		while (!itemWasAdded)
+		{
+			int x = random.nextInt(mapSize);
+			int y = random.nextInt(mapSize);
+			if (grid[y][x] == '.' &&
+					distance(new Position(x,y), snakes[0].Head()) >= 4 &&
+					distance(new Position(x,y), snakes[1].Head()) >= 4)
+			{
+				grid[y][x] = item;
+				graphicManager.drawItem(x,y, item);
+				return;
+			}
+		}
+	}
 }

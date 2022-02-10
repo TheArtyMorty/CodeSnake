@@ -6,18 +6,17 @@ import com.codingame.gameengine.module.entities.Sprite;
 import com.codingame.gameengine.module.entities.Text;
 import com.google.inject.Inject;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class GraphicManager {
     @Inject private GraphicEntityModule graphicEntityModule;
 
     private int mapSize = 10;
 
-    private String[] images = { "cross.png", "circle.png" };
-    private Sprite[] fruits = new Sprite[2];
+    private String[] images = { "cross.png", "circle.png", "teleport.png", "reverse.png" };
+    private Map<Character, Sprite> Items = new HashMap<Character, Sprite>() {};
     private List<List<Sprite>> snakeSprites = new ArrayList<>();
+    private List<Text> PlayerScores = new ArrayList<Text>();
     private int[] playerColors = new int[2];
 
     public void Init(int size, int c1, int c2)
@@ -34,12 +33,12 @@ public class GraphicManager {
                 .setImage("Background.jpg")
                 .setAnchor(0);
         graphicEntityModule.createSprite()
-                .setImage("logo.png")
+                .setImage("myLogo.png")
                 .setX(1920 - 280)
                 .setY(915)
                 .setAnchor(0.5);
         graphicEntityModule.createSprite()
-                .setImage("myLogo.png")
+                .setImage("logo.png")
                 .setX(280)
                 .setY(915)
                 .setAnchor(0.5);
@@ -76,6 +75,15 @@ public class GraphicManager {
                     .setFillColor(0xffffff)
                     .setAnchor(0.5);
 
+            Text score = graphicEntityModule.createText("Score : 2")
+                    .setX(x)
+                    .setY(y + 160)
+                    .setZIndex(20)
+                    .setFontSize(40)
+                    .setFillColor(0xffffff)
+                    .setAnchor(0.5);
+            PlayerScores.add(score);
+
             Sprite avatar = graphicEntityModule.createSprite()
                     .setX(x)
                     .setY(y)
@@ -85,30 +93,58 @@ public class GraphicManager {
                     .setBaseHeight(116)
                     .setBaseWidth(116);
 
-            player.hud = graphicEntityModule.createGroup(text, avatar);
+            player.hud = graphicEntityModule.createGroup(text, score, avatar);
         }
     }
 
-    public void drawFruit(int x, int y, char fruit)
+    public void UpdateScore(int playerIndex, int score)
+    {
+        PlayerScores.get(playerIndex).setText(String.format("score : %d", score));
+    }
+
+    public void drawItem(int x, int y, char item)
     {
         int cellSize = (int) Math.round(720 / mapSize);
         int topLeftx = (int) Math.round(1920/2 - cellSize*mapSize/2);
         int topLefty = (int) Math.round(1080/2 - cellSize*mapSize/2);
-        fruits[fruit - 'A'] = graphicEntityModule.createSprite()
+
+        int color = 0xff1234;
+        String image = images[1];
+
+        switch (item)
+        {
+            case 'A':
+            case 'B':
+                color = playerColors[item - 'A'];
+                image = images[1];
+                break;
+            case 'R':
+                color = 0xff1234;
+                image = images[3];
+                break;
+            case 'T':
+            default:
+                color = 0xff1234;
+                image = images[2];
+                break;
+        }
+
+        Items.put(item, graphicEntityModule.createSprite()
                 .setX(topLeftx + x*cellSize+cellSize/2)
                 .setY(topLefty + y*cellSize+cellSize/2)
                 .setBaseHeight(cellSize)
                 .setBaseWidth(cellSize)
                 .setZIndex(20)
-                .setImage(images[1])
+                .setImage(image)
                 .setAnchor(0.5)
-                .setTint(playerColors[fruit - 'A']);
+                .setTint(color));
     }
 
-    public void HideFruit(int i)
+    public void HideItem(char i)
     {
-        fruits[i].setAlpha(0);
+        Items.get(i).setAlpha(0);
     }
+
     public void drawWall(int x, int y)
     {
         int cellSize = (int) Math.round(720 / mapSize);

@@ -26,8 +26,8 @@ public class Referee extends AbstractReferee {
     @Override
     public void init()
     {
-        //long seed = 4158044537652199970L;
-        masterGrid = new Grid(gameManager.getSeed(), graphicManager, gameManager.getPlayers());
+        long seed = gameManager.getSeed();
+        masterGrid = new Grid(seed, graphicManager, gameManager.getPlayers());
 
         graphicManager.drawBackground();
         graphicManager.drawHud(gameManager.getPlayers());
@@ -107,6 +107,7 @@ public class Referee extends AbstractReferee {
 		{
     		int snakeSize = masterGrid.GetPlayerSnakeSize(player);
     		player.setScore(snakeSize);
+            graphicManager.UpdateScore(player.getIndex(), snakeSize);
 			if (snakeSize >= 12)
 			{
 				gameManager.addTooltip(player,String.format("$%d snake reached 12 length !", player.getIndex()));
