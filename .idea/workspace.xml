@@ -5,33 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5ca90c5-2e4f-4181-bd1b-b5c5f27b615c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Body_DownLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Body_LeftRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Body_LeftUp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Body_RightDown.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Body_UpDown.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Body_UpRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Head_Down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Head_Left.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Head_Right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Head_Up.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Tail_Down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Tail_Left.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Tail_Right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/assets/Tail_Up.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/level1/statement_en.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/level1/statement_en.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/statement_en.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/statement_en.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/GraphicManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/GraphicManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Snake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Position.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Referee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Referee.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

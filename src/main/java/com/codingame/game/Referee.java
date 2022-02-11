@@ -24,7 +24,7 @@ public class Referee extends AbstractReferee {
         graphicManager.drawBackground();
         graphicManager.drawHud(gameManager.getPlayers());
 
-        gameManager.setFrameDuration(500);
+        gameManager.setFrameDuration(200);
         gameManager.setMaxTurns(200);
     }
 
