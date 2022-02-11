@@ -14,6 +14,9 @@ public class GraphicManager {
     private int mapSize = 10;
 
     private String[] images = { "cross.png", "circle.png", "teleport.png", "reverse.png" };
+    private String[] snakeBody = {"Body_UpDown.png",  "Body_LeftRight.png", "Body_UpRight.png", "Body_RightDown.png", "Body_DownLeft.png", "Body_LeftUp.png" };
+    private String[] snakeHead = { "Head_Up.png", "Head_Right.png", "Head_Down.png", "Head_Left.png" };
+    private String[] snakeTail = { "Tail_Up.png", "Tail_Right.png", "Tail_Down.png", "Tail_Left.png" };
     private Map<Character, Sprite> Items = new HashMap<Character, Sprite>() {};
     private List<List<Sprite>> snakeSprites = new ArrayList<>();
     private List<Text> PlayerScores = new ArrayList<Text>();
@@ -206,6 +209,35 @@ public class GraphicManager {
                 .setZIndex(25);
     }
 
+    private String GetSpriteFromPosition(Position p)
+    {
+        if (p.from < 0)
+        {
+            return snakeTail[p.to];
+        }
+        else if (p.to < 0)
+        {
+            return snakeHead[p.from];
+        }
+        else
+        {
+            if (p.from % 2 == p.to % 2)
+            {
+                return snakeBody[p.from % 2]; //UpDown or LeftRight
+            }
+            else
+            {
+                if (p.from == (p.to + 3) % 4)
+                {
+                    return snakeBody[2 + p.from];
+                }
+                else
+                {
+                    return snakeBody[2 + p.to];
+                }
+            }
+        }
+    }
 
     public void AddSnakeSprite(Position p, int snakeId)
     {
@@ -214,7 +246,7 @@ public class GraphicManager {
                 .setBaseHeight(cellSize)
                 .setBaseWidth(cellSize)
                 .setZIndex(20)
-                .setImage("cross.png")
+                .setImage(GetSpriteFromPosition(p))
                 .setAnchor(0.5)
                 .setTint(playerColors[snakeId]);
         snakeSprites.get(snakeId).add(s);
@@ -228,7 +260,8 @@ public class GraphicManager {
         int topLefty = (int) Math.round(1080/2 - cellSize*mapSize/2);
         snakeSprites.get(snakeId).get(spriteIndex)
                 .setX(topLeftx + p.x*cellSize+cellSize/2, Curve.IMMEDIATE)
-                .setY(topLefty + p.y*cellSize+cellSize/2, Curve.IMMEDIATE);
+                .setY(topLefty + p.y*cellSize+cellSize/2, Curve.IMMEDIATE)
+                .setImage(GetSpriteFromPosition(p));
 
     }
 }

@@ -43,8 +43,8 @@ public class Grid {
 
 		 graphicManager.Init(mapSize, players.get(0).getColorToken(), players.get(1).getColorToken());
 
- 		snakes[0] = new Snake(new Position(2,1), new Position(1,1), 1, graphicManager, mapSize, 0);
- 		snakes[1] = new Snake(new Position(mapSize-3,mapSize-2),new Position(mapSize-2,mapSize-2),3, graphicManager, mapSize, 1);
+ 		snakes[0] = new Snake(new Position(2,1,3, -1), new Position(1,1,-1, 1), 1, graphicManager, mapSize, 0);
+ 		snakes[1] = new Snake(new Position(mapSize-3,mapSize-2,1,-1),new Position(mapSize-2,mapSize-2,-1,3),3, graphicManager, mapSize, 1);
 
 		 graphicManager.DrawGrid(theMap);
 
@@ -198,7 +198,8 @@ public class Grid {
 			else {nextx = mapSize - increment + head.x;}
         	break;
         }
-		MoveSnakeTo(snake, new Position(nextx, nexty), action.player.getIndex());
+		int from = Utils.ReverseDirection(snake.orientation);
+		MoveSnakeTo(snake, new Position(nextx, nexty,from,-1), action.player.getIndex());
     }
     
     private void MoveSnakeTo(Snake snake, Position position, int playerIndex)
@@ -264,8 +265,8 @@ public class Grid {
 			int x = random.nextInt(mapSize);
 			int y = random.nextInt(mapSize);
 			if (grid[y][x] == '.' &&
-					distance(new Position(x,y), snakes[0].Head()) >= 4 &&
-					distance(new Position(x,y), snakes[1].Head()) >= 4)
+					distance(new Position(x,y,-1,-1), snakes[0].Head()) >= 4 &&
+					distance(new Position(x,y,-1,-1), snakes[1].Head()) >= 4)
 			{
 				grid[y][x] = 'A';
 				graphicManager.drawItem(x,y, 'A');
@@ -285,8 +286,8 @@ public class Grid {
 			int x = random.nextInt(mapSize);
 			int y = random.nextInt(mapSize);
 			if (grid[y][x] == '.' &&
-					distance(new Position(x,y), snakes[0].Head()) >= 4 &&
-					distance(new Position(x,y), snakes[1].Head()) >= 4)
+					distance(new Position(x,y,-1,-1), snakes[0].Head()) >= 4 &&
+					distance(new Position(x,y,-1,-1), snakes[1].Head()) >= 4)
 			{
 				grid[y][x] = item;
 				graphicManager.drawItem(x,y, item);

@@ -24,8 +24,8 @@ public class Referee extends AbstractReferee {
         graphicManager.drawBackground();
         graphicManager.drawHud(gameManager.getPlayers());
 
-        gameManager.setFrameDuration(150);
-        gameManager.setMaxTurns(100);
+        gameManager.setFrameDuration(500);
+        gameManager.setMaxTurns(200);
     }
 
     private void SendPlayerInputs(Player player)
@@ -117,6 +117,11 @@ public class Referee extends AbstractReferee {
             p0.hud.setAlpha(0.3);
         }
 
+        endScreenModule.setScores(gameManager.getPlayers().stream().mapToInt(p -> p.getScore()).toArray());
+    }
+
+    @Override
+    public void onEnd() {
         endScreenModule.setScores(gameManager.getPlayers().stream().mapToInt(p -> p.getScore()).toArray());
     }
 }

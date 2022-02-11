@@ -10,7 +10,6 @@ public class Snake {
 	public int orientation = 0;
 	public String bonuses = "";
 	public Deque<Position> body = new LinkedList<Position>();
-	public Deque<Integer> orientations = new LinkedList<Integer>();;
 	
 	private String[] directions = { "UP", "RIGHT", "DOWN", "LEFT" };
 
@@ -24,7 +23,6 @@ public class Snake {
 		body.addLast(tail);
 		graphicManager.AddSnakeSprite(tail, c);
         orientation = o;
-		orientations.addLast(o);
         bonuses = "";
     }
 
@@ -58,32 +56,27 @@ public class Snake {
 		Deque<Position> reversedBody = new LinkedList<Position>();
 		while (!body.isEmpty())
 		{
-			reversedBody.addLast(body.removeLast());
+			reversedBody.addLast(body.removeLast().Reverse());
 		}
 		body = reversedBody;
-		//reverse directions
-		Deque<Integer> reversedOrientations = new LinkedList<Integer>();
-		while (!orientations.isEmpty())
-		{
-			reversedOrientations.addLast((orientations.removeLast()+2) % 4);
-		}
-		orientations = reversedOrientations;
-		orientation = orientations.getFirst();
 	}
 
 	private int GetTailOrientation()
 	{
-		return (orientations.getLast()+2)%4;
+		return body.getLast().from;
 	}
 
 	public void MoveTo(Position p, boolean removeTail)
 	{
+		body.getFirst().to = Utils.ReverseDirection(p.from);
 		body.addFirst(p);
-		orientations.addFirst(orientation);
 		if (removeTail)
 		{
 			body.removeLast();
-			orientations.removeLast();
+			Position newLast = body.removeLast();
+			newLast.to = Utils.ReverseDirection(body.getLast().from);
+			newLast.from = -1;
+			body.addLast(newLast);
 		}
 		else
 		{
@@ -100,19 +93,14 @@ public class Snake {
 		return body.getFirst();
 	}
 
-	public Position RemoveTail()
-	{
-		return body.removeLast();
-	}
-
 	public boolean CanGoInDirection(int d)
 	{
-		return ((orientation + 2) % 4) != d;
+		return (Utils.ReverseDirection(orientation)) != d;
 	}
 
 	public boolean CanReverseToDirection(int d)
 	{
-		return ((GetTailOrientation() + 2) % 4) != d;
+		return Utils.ReverseDirection(GetTailOrientation()) != d;
 	}
 	
 	public void SendToPlayer(Player player)
