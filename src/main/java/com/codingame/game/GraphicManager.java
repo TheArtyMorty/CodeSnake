@@ -103,6 +103,7 @@ public class GraphicManager {
     public void UpdateScore(int playerIndex, int score)
     {
         PlayerScores.get(playerIndex).setText(String.format("score : %d", score));
+        graphicEntityModule.commitWorldState(0);
     }
 
     public void drawItem(int x, int y, char item)
@@ -262,6 +263,5 @@ public class GraphicManager {
                 .setX(topLeftx + p.x*cellSize+cellSize/2, Curve.IMMEDIATE)
                 .setY(topLefty + p.y*cellSize+cellSize/2, Curve.IMMEDIATE)
                 .setImage(GetSpriteFromPosition(p));
-
     }
 }

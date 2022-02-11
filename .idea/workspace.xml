@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5ca90c5-2e4f-4181-bd1b-b5c5f27b615c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/GraphicManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/GraphicManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/demo.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/.jdks/corretto-1.8.0_322" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.44942528" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
