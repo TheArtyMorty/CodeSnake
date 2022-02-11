@@ -117,7 +117,6 @@ public class Referee extends AbstractReferee {
             p0.hud.setAlpha(0.3);
         }
 
-        endScreenModule.setScores(gameManager.getPlayers().stream().mapToInt(p -> p.getScore()).toArray());
     }
 
     @Override
