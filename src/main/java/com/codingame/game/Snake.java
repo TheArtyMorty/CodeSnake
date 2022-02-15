@@ -63,7 +63,7 @@ public class Snake {
 
 	private int GetTailOrientation()
 	{
-		return body.getLast().from;
+		return Utils.ReverseDirection(body.getLast().to);
 	}
 
 	public void MoveTo(Position p, boolean removeTail)

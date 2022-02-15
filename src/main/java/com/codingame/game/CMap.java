@@ -100,7 +100,8 @@ public class CMap {
                     "W...........11W",
                     "WWWWWWWWWWWWWWW"}));
 
-            return maps.get(random.nextInt(maps.size()));
+            // return maps.get(0);
+           return maps.get(random.nextInt(maps.size()));
         }
     }
 }

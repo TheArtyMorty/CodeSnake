@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5ca90c5-2e4f-4181-bd1b-b5c5f27b615c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/Player3_StepByStep.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/GraphicManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/GraphicManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/CMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/CMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Snake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/GraphicManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/GraphicManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codingame/game/Referee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codingame/game/Referee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/view/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/demo.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
