@@ -241,7 +241,7 @@ public class Grid {
 				case '.':
 					grid[position.y][position.x] = (char)('0' + i);
 					break;
-				case 'W':
+				case '#':
 				case '0':
 				case '1':
 					deadSnakes.add(i);

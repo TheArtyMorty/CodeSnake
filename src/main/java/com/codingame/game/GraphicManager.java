@@ -190,7 +190,7 @@ public class GraphicManager {
         {
             for (int x = 0; x < mapSize; x++)
             {
-                if (map.grid[y][x] == 'W')
+                if (map.grid[y][x] == '#')
                 {
                     drawWall(x,y);
                 }

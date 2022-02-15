@@ -49,11 +49,12 @@
 		 - '1' for opponent snake.<br>
 		 - 'A' for the apple.<br>
 		 - 'B' for the blueberry.<br>
-		 - 'W' for a wall.<br>
+		 - '#' for a wall.<br>
 		 - 'T' for the TELEPORT Bonus. // Upper league <br>
 		 - 'R' for the REVERSE Bonus. // Upper league <br>
             <br>
-		 Each turn, you must output a direction (UP, LEFT, RIGHT, DOWN), moving your snake in this direction.<br>
+		 Each turn, you must output a valid direction (UP, LEFT, RIGHT, DOWN), moving your snake in this direction.<br>
+         Note : You cannot go in the opposite direction that your head is facing (For example, if you are facing "UP", outputting "DOWN" will be considered invalid).<br>
 		 If your head touch a wall or a snake (body or head), you are eliminated.<br>
             <br>
             If your head move on an Apple, the following will occur :<br>

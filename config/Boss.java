@@ -153,7 +153,7 @@ class Player {
                 {
                     switch (line.toCharArray()[j])
                     {
-                        case 'W':
+                        case '#':
                         case '0':
                         case '1':
                             theMap.AddWall(j,i);
