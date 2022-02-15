@@ -8,7 +8,7 @@ loop mySize read bodyX:int bodyY:int
 read opponentDirection:word(5)
 read opponentBonuses:string(20)
 read opponentSize:int
-loop opponentSize read bodyX:int bodyY:int
+loop opponentSize read opponentBodyX:int opponentBodyY:int
 read validActionCount:int
 loop validActionCount read validAction:string(20)
 write UP

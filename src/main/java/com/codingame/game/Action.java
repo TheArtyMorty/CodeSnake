@@ -13,7 +13,7 @@ public class Action {
     
     @Override
     public String toString() {
-        return direction + " " + bonus;
+        return direction + (bonus.isEmpty() ? "" : " " + bonus);
     }
 
     @Override
